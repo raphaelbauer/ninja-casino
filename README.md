@@ -5,7 +5,7 @@
     \____|__  /___\____|__  /\________\____|__  /
          web\/framework   \/                  \/ 
         
-
+[![Build Status](https://buildhive.cloudbees.com/job/raphaelbauer/job/ninja-casino/badge/icon)](https://buildhive.cloudbees.com/job/raphaelbauer/job/ninja-casino/)
 
 ninja-casino
 ============
@@ -18,6 +18,7 @@ roadmap
 
 Stuff planned:
 
+ * bump to sable versions (appengine, ninja) once they are on maven central
  * password reset form
  * transfer of login token between two domains after successful login
    (use case appengine appspot)
