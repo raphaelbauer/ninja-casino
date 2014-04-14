@@ -10,6 +10,9 @@ import ninja.appengine.AppEngineEnvironment;
 
 @AppEngineEnvironment
 public class CasinoUserManagerObjectifyImpl implements CasinoUserManager {
+    
+    // 1000 * 60 * 15; // 15 mins valid
+    public static final long RECOVER_PASSWORD_CODE_VALIDITY_TIME = 1000 * 60 * 15;
 
     @Inject
     Provider<Objectify> objectifyProvider;
@@ -111,6 +114,7 @@ public class CasinoUserManagerObjectifyImpl implements CasinoUserManager {
         }
 
         user.recoverPasswordCode = recoveryPasswordCode;
+        user.recoverPasswordCodeTimeStamp = System.currentTimeMillis();
         objectify.save().entity(user).now();
         
         return true;
@@ -215,8 +219,27 @@ public class CasinoUserManagerObjectifyImpl implements CasinoUserManager {
         if (user == null) {
             return Optional.absent();
         }
+        
+        Optional<String> returnValue;
+        
+        if ((user.recoverPasswordCodeTimeStamp != null)
+                && (System.currentTimeMillis() - user.recoverPasswordCodeTimeStamp) 
+                    < RECOVER_PASSWORD_CODE_VALIDITY_TIME) {
 
-        return Optional.of(user.email);
+            returnValue = Optional.of(user.email);
+        
+        } else {
+            returnValue = Optional.absent(); 
+        }
+        
+        //remove recover password code in any case
+        user.recoverPasswordCode = null;
+        user.recoverPasswordCodeTimeStamp = null;
+        objectify.save().entity(user).now();
+        
+        
+        return returnValue;
+
     }
 
 }

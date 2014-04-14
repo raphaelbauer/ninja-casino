@@ -32,6 +32,9 @@ public class User {
 
     public static final String RECOVER_PASSWORD_CODE = "recoverPasswordCode";
     public String recoverPasswordCode;
+    
+    public static final String RECOVER_PASSWORD_CODE_TIMESTAMP = "recoverPasswordCodeTimeStamp";
+    public Long recoverPasswordCodeTimeStamp;
 
     /**
      * A simple String based role checking. use methods hasRole / addRole /

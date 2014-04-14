@@ -259,18 +259,21 @@
                 <groupId>org.ninjaframework</groupId>
                 <artifactId>ninja-core</artifactId>
                 <version>${ninja.version}</version>
+                <scope>provided</scope>
             </dependency>
             
             <dependency>
                 <groupId>org.ninjaframework</groupId>
                 <artifactId>ninja-test-utilities</artifactId>
                 <version>${ninja.version}</version>
+                <scope>provided</scope>
             </dependency>
             
             <dependency>
                 <groupId>org.ninjaframework</groupId>
                 <artifactId>ninja-appengine-module</artifactId>
                 <version>${ninja.appengine.version}</version>
+                <scope>provided</scope>
             </dependency>
 
         </dependencies>

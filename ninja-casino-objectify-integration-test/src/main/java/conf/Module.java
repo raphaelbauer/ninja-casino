@@ -30,9 +30,10 @@ public class Module extends AbstractModule {
 
     protected void configure() {
         
-        bind(CasinoUserManager.class).to(CasinoUserManagerObjectifyImpl.class);
+        
         bind(Objectify.class).toProvider(ObjectifyProvider.class);
-        install(new AppEngineModule());    
+        install(new AppEngineModule());   
+        install(new CasinoObjectifyModule());
         
     }
 
